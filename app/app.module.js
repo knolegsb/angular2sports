@@ -39,6 +39,11 @@ var AppModule = (function () {
                         canActivate: [storeFirst_guard_1.StoreFirstGuard]
                     },
                     {
+                        path: "admin",
+                        loadChildren: "app/admin/admin.module#AdminModule",
+                        canActivate: [storeFirst_guard_1.StoreFirstGuard]
+                    },
+                    {
                         path: "**", redirectTo: "/store" }
                 ])
             ],
