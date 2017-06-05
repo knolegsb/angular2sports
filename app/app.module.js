@@ -16,6 +16,7 @@ var router_1 = require("@angular/router");
 var store_component_1 = require("./store/store.component");
 var checkout_component_1 = require("./store/checkout.component");
 var cartDetail_component_1 = require("./store/cartDetail.component");
+var storeFirst_guard_1 = require("./storeFirst.guard");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,12 +26,23 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 store_module_1.StoreModule,
                 router_1.RouterModule.forRoot([
-                    { path: "store", component: store_component_1.StoreComponent },
-                    { path: 'cart', component: cartDetail_component_1.CartDetailComponent },
-                    { path: "checkout", component: checkout_component_1.CheckoutComponent },
-                    { path: "**", redirectTo: "/store" }
+                    {
+                        path: "store", component: store_component_1.StoreComponent,
+                        canActivate: [storeFirst_guard_1.StoreFirstGuard]
+                    },
+                    {
+                        path: 'cart', component: cartDetail_component_1.CartDetailComponent,
+                        canActivate: [storeFirst_guard_1.StoreFirstGuard]
+                    },
+                    {
+                        path: "checkout", component: checkout_component_1.CheckoutComponent,
+                        canActivate: [storeFirst_guard_1.StoreFirstGuard]
+                    },
+                    {
+                        path: "**", redirectTo: "/store" }
                 ])
             ],
+            providers: [storeFirst_guard_1.StoreFirstGuard],
             declarations: [app_component_1.AppComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 

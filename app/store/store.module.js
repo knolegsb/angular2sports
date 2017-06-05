@@ -17,12 +17,13 @@ var counter_directive_1 = require("./counter.directive");
 var cartSummary_component_1 = require("./cartSummary.component");
 var cartDetail_component_1 = require("./cartDetail.component");
 var checkout_component_1 = require("./checkout.component");
+var router_1 = require("@angular/router");
 var StoreModule = (function () {
     function StoreModule() {
     }
     StoreModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, model_module_1.ModelModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, model_module_1.ModelModule, router_1.RouterModule],
             declarations: [
                 store_component_1.StoreComponent,
                 counter_directive_1.CounterDirective,
