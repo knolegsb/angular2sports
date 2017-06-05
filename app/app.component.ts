@@ -7,7 +7,10 @@ import { Component } from "@angular/core";
     //         This is SportStore
     //     </div>
     // `
-    template: "<store></store>"
+    
+    //template: "<store></store>"
+
+    template: "<router-outlet></router-outlet>"
 })
 
 export class AppComponent { }

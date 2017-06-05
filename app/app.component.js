@@ -20,7 +20,8 @@ var AppComponent = (function () {
             //         This is SportStore
             //     </div>
             // `
-            template: "<store></store>"
+            //template: "<store></store>"
+            template: "<router-outlet></router-outlet>"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
