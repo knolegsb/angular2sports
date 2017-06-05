@@ -14,10 +14,15 @@ var StoreComponent = (function () {
     function StoreComponent(repository) {
         this.repository = repository;
         this.selectedCategory = null;
+        this.productsPerPage = 4;
+        this.selectedPage = 1;
     }
     Object.defineProperty(StoreComponent.prototype, "products", {
         get: function () {
-            return this.repository.getProducts(this.selectedCategory);
+            var pageIndex = (this.selectedPage - 1) * this.productsPerPage;
+            var value = this.repository.getProducts(this.selectedCategory)
+                .slice(pageIndex, pageIndex + this.productsPerPage);
+            return value;
         },
         enumerable: true,
         configurable: true
@@ -32,6 +37,21 @@ var StoreComponent = (function () {
     StoreComponent.prototype.changeCategory = function (newCategory) {
         this.selectedCategory = newCategory;
     };
+    StoreComponent.prototype.changePage = function (newPage) {
+        this.selectedPage = newPage;
+    };
+    StoreComponent.prototype.changePageSize = function (newSize) {
+        this.productsPerPage = Number(newSize);
+        this.changePage(1);
+    };
+    Object.defineProperty(StoreComponent.prototype, "pageNumbers", {
+        get: function () {
+            return Array(Math.ceil(this.repository.getProducts(this.selectedCategory).length / this.productsPerPage))
+                .fill(0).map(function (x, i) { return i + 1; });
+        },
+        enumerable: true,
+        configurable: true
+    });
     StoreComponent = __decorate([
         core_1.Component({
             selector: "store",
